@@ -1,0 +1,275 @@
+html{
+  height: 100%;
+  min-width: 450px;
+}
+* {
+  box-sizing: border-box;
+  font-weight: inherit;
+}
+body{
+  font-family: 'Roboto Slab', serif;
+  font-weight: 200;
+}
+button{
+  cursor: pointer;
+  font-family: 'Roboto Slab', serif;
+  font-size: 15px;
+}
+.menu-item {
+  transition: border-color 0.5s, background-color 0.5s, color 0.5s;
+}
+.menu-item:hover {
+  background-color: rgb(49, 54, 97);
+  border-color: transparent;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+header{
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #001227;
+  position: fixed;
+}
+main{
+  flex: 1 0 auto;
+}
+footer{
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.menu{
+  display: flex;
+  flex-direction: row;
+}
+.menu-item{
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #0B0C10;
+  color: #45A29E;
+  font-style: italic;
+  font-weight: 400;
+}
+.viewing{
+  text-decoration: underline;
+  font-weight: 900;
+}
+.logo img{
+  height: 60px;
+  width: 60px;
+}
+.logo{
+  height: 60px;
+}
+.header,header,.content,.heading,body,img,.logo,.menu{
+  margin: 0px;
+  padding: 0px;
+  border-width: 0px;
+}
+.copyrights{
+  padding-left: 5%;
+  text-align: left;
+}
+.Timer{
+  text-align: right;
+  padding-right: 5%;
+}
+article{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+section{
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+article.gallery{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.main-content,article.gallery,main,footer,.cat-gallery_name,.series,.series-name{
+  background-color: #0B0C10;
+  color: #C5C6C7;
+  margin: 0px;
+  padding: 0px;
+  overflow: auto;
+}
+.cat-gallery{
+  background-color: #0B0C10;
+  color: #C5C6C7;
+  margin: 0px;
+  padding: 0px;
+  columns: 4 250px;
+  column-gap: 1rem;
+  max-width: 80%;
+}
+img{
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.cat-gallery_name,.series,.series-name{
+  text-align: center;
+  font-size: 40px;
+}
+
+.cat-gallery_name{
+  margin-top: -1px;
+  margin-bottom: -1px;
+}
+
+.series-table{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 40px;
+  overflow: auto;
+}
+td{
+  padding: 10px;
+}
+caption{
+  font-style: italic;
+  font-size: 20px;
+}
+.main-content{
+  margin-top: 60px;
+  text-align: center;
+}
+.main-content ul{
+  display: inline-block;
+  text-align: left;
+}
+.menu-item{
+  border: 2px solid #45A29E;
+}
+main{
+  padding-left: 10px;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+/* @media screen and (max-width: 1000px) {
+  .column {
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+  }
+} */
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+/* @media screen and (max-width: 600px) {
+  .column {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 100%;
+  }
+} */
+
+@media screen and (max-width: 500px) {
+  .logo{
+    display: none;
+  }
+  .menu{
+    height: 60px;
+    overflow-x: scroll;
+  }
+  header{
+    justify-content: center;
+  }
+}
+
+#about {
+  display: block;
+  position: relative;
+  top: -50px; 
+  visibility: hidden;
+}
+#projects {
+  display: block;
+  position: relative;
+  top: -50px; 
+  visibility: hidden;
+}
+#contacts {
+  display: block;
+  position: relative;
+  top: -50px; 
+  visibility: hidden;
+}
+.start-tour{
+  margin: 30px 0px;
+}
+.tour,
+input[type="submit"]{
+	cursor: pointer;
+    border-radius: 0px;
+    text-decoration: none;
+    padding: 12px 18px;
+    font-size: 12px;
+    line-height: 19px;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif; font-weight:400;
+    letter-spacing: 3px;
+    -webkit-transition: all .4s ease-in-out;
+       -moz-transition: all .4s ease-in-out;
+        -ms-transition: all .4s ease-in-out;
+         -o-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+}
+.tour:hover,
+input[type="submit"]:hover{
+    -webkit-transition: all .4s ease-in-out;
+       -moz-transition: all .4s ease-in-out;
+        -ms-transition: all .4s ease-in-out;
+         -o-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+}
+.btn-white{
+    border:solid 2px #fff;
+    background: transparent;
+    color: #fff !important;
+}
+.btn-white:hover{
+    border:solid 2px #fff;
+    background: #fff;
+    color: #1f1f1f !important;
+}
+
+
+
+
+/* .introjs-helperLayer {
+  background: transparent;
+}
+
+.introjs-overlay {
+  opacity: 0 !important;
+}
+
+.introjs-helperLayer:before {
+  opacity: 0;
+  content: '';
+  position: fixed;
+  width: inherit;
+  height: inherit;
+  border-radius: 0.5em;
+  box-shadow: 0 0 0 1000em rgba(0,0,0, .7);
+  opacity: 1;
+}
+
+.introjs-helperLayer:after {
+  content: '';
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 1000;
+} */
