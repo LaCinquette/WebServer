@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 var options = {
     threshold: 0.9
     // rootMargin: '-5px 0px -50%'

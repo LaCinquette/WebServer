@@ -9,7 +9,11 @@
         <div class="main-content">
             <main>
                 <div class="account">
-                    {{> account/unauthorized}}
+                    {{#if auth}}
+                        {{> account/authorized}}
+                    {{else}}
+                        {{> account/unauthorized}}
+                    {{/if}}
                 </div>
                 <div class="start-tour">
                     <button class="tour btn-white">

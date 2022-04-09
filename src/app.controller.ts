@@ -20,4 +20,10 @@ export class AppController {
   root() {
     // return { message: 'Hello world!' };
   }
+
+  @Get('auth')
+  @Render('index')
+  auth() {
+    return { auth: true};
+  }
 }
