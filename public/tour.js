@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const intro = introJs();
 
 intro.setOptions({

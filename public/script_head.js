@@ -22,3 +22,4 @@
     ).innerText = `Total time: ${loadTime} ms (client) + ${getServerLoadingTime()} ms (server)`;
   });
 })();
+

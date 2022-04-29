@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+// console.log(process.env.HEROKU_POSTGRESQL_BLACK_URL)
 var options = {
     threshold: 0.9
     // rootMargin: '-5px 0px -50%'
