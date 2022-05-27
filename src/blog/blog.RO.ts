@@ -6,7 +6,7 @@ export class BlogRO {
         default: "1",
         type: Number,
     })
-    id: number;
+    postId: number;
 
     @ApiProperty({
       description: 'Blog post text',

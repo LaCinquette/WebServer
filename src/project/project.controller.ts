@@ -1,5 +1,6 @@
-import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
-import { ApiBody, ApiCreatedResponse, ApiNotImplementedResponse, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
+import { ApiBasicAuth, ApiBody, ApiCreatedResponse, ApiNotImplementedResponse, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { AdminGuard } from 'src/auth/admin.guard';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { ProjectRO } from './project.RO';
 import { ProjectService } from './project.service';
@@ -19,6 +20,8 @@ export class ProjectController {
         description: 'Project with this ID',
         type: ProjectRO,
     })
+    @ApiBasicAuth()
+    @UseGuards(AdminGuard)
     async showProject(@Param('id') id: number): Promise<ProjectRO> {
         return this.projectService.showProject(id);
     };
@@ -30,6 +33,8 @@ export class ProjectController {
         description: 'Project has been successfully created.',
         type: CreateProjectDto,
     })
+    @ApiBasicAuth()
+    @UseGuards(AdminGuard)
     async createProject(@Body() createProjectDto: CreateProjectDto): Promise<CreateProjectDto> {
         return this.projectService.createProject(createProjectDto);
     };
@@ -44,6 +49,8 @@ export class ProjectController {
         description: 'Project has been successfully removed.',
         type: CreateProjectDto,
     })
+    @ApiBasicAuth()
+    @UseGuards(AdminGuard)
     async removeProject(@Query('id') id: number): Promise<CreateProjectDto> {
         return this.projectService.removeProject(id);
     };

@@ -1,0 +1,82 @@
+*{
+    box-sizing: border-box;
+}
+
+/* Add a gray background color with some padding */
+body {
+    font-family: Arial;
+    padding: 20px;
+    background: #f1f1f1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Header/Blog Title */
+.header {
+    padding: 30px;
+    width: 100%;
+    font-size: 40px;
+    text-align: center;
+    background: white;
+}
+.reactions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.likes{
+    margin-right: 5px;
+}
+.material-icons{
+    cursor: pointer;
+}
+.page:hover{
+    cursor: pointer;
+    padding-bottom: 3px;
+    margin: 0px 9px;
+    color: dimgray;
+    font-weight: 800;
+}
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.row {   
+    width: 75%;
+    text-align: left;
+}
+
+.title, .date{
+    text-align: center;
+}
+
+/* Add a card effect for articles */
+.card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Footer */
+.page{
+    display: block;
+    margin: 0 10px;
+}
+.footer {
+    width: 100%;
+    height: 70px;
+    padding: 20px;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background: #ddd;
+    margin-top: 20px;
+}

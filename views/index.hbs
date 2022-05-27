@@ -9,11 +9,17 @@
         <div class="main-content">
             <main>
                 <div class="account">
-                    {{#if auth}}
-                        {{> account/authorized}}
-                    {{else}}
+                    {{!-- {{role}} --}}
+                    {{#if_eq role 'admin'}}
+                        {{> account/admin}}
+                    {{/if_eq}}
+                    {{#if_eq role 'client'}}
+                        {{> account/client}}
+                    {{/if_eq}}
+                    {{#if_eq role 'guest'}}
                         {{> account/unauthorized}}
-                    {{/if}}
+                    {{/if_eq}}
+                    <button id="signout">Sign out</button>
                 </div>
                 <div class="start-tour">
                     <button class="tour btn-white">

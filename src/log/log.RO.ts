@@ -6,7 +6,7 @@ export class LogRO {
     default: ["Comment #1", "Comment #2", "Comment #3"],
     type: [String],
   })
-  commentHistory: [string];
+  commentHistory: string[];
 
   @ApiProperty({
     description: 'Date of the last update',

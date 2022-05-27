@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsNumberString } from 'class-validator';
 
 // model Log {
 //     logId          Int      @id @default(autoincrement())
@@ -8,6 +9,8 @@ import { ApiProperty } from '@nestjs/swagger';
 // }
 
 export class CreateLogDto {
+    @IsNotEmpty()
+    @IsNumberString()
     @ApiProperty({
         description: 'Log id',
         default: "1",
@@ -15,10 +18,11 @@ export class CreateLogDto {
     })
     logId: number;
 
+    @IsNotEmpty()
     @ApiProperty({
         description: 'Comment',
         default: "Your initial comment",
         type: String,
     })
-    initialComment: string;
+    commentHistory: string[];
 }

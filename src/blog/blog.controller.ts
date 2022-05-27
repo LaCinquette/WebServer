@@ -1,5 +1,6 @@
-import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
-import { ApiBody, ApiCreatedResponse, ApiNotImplementedResponse, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Param, Post, Query, Render, UseGuards } from '@nestjs/common';
+import { ApiBasicAuth, ApiBody, ApiCreatedResponse, ApiNotImplementedResponse, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { AdminGuard } from 'src/auth/admin.guard';
 import { BlogRO } from './blog.RO';
 import { BlogService } from './blog.service';
 import { CreateBlogDto } from './dto/create-blog.dto';
@@ -8,6 +9,12 @@ import { CreateBlogDto } from './dto/create-blog.dto';
 @Controller('blog')
 export class BlogController {
     constructor(private blogService: BlogService) {};
+
+    @Get('')
+    @Render('blog')
+    blog(): any{
+        return;
+    }
 
     @Get('get/:id')
     @ApiParam({
@@ -19,8 +26,10 @@ export class BlogController {
         description: 'Search results',
         type: BlogRO,
     })
+    @ApiBasicAuth()
+    @UseGuards(AdminGuard)
     async findAll(@Param('id') id: number): Promise<BlogRO>{
-        return await this.blogService.showPost(id);
+        return await this.blogService.showPosts(id);
     };
 
     @Post('post')
@@ -30,8 +39,10 @@ export class BlogController {
         description: 'Client has been successfully created.',
         type: CreateBlogDto,
     })
+    @ApiBasicAuth()
+    @UseGuards(AdminGuard)
     async create(@Body() createClientDto: CreateBlogDto): Promise<CreateBlogDto> {
-        return await this.blogService.postBlog(createClientDto);
+        return await this.blogService.postToBlog(createClientDto);
     };
 
     @Delete('delete')
@@ -44,6 +55,8 @@ export class BlogController {
         description: 'Client has been successfully removed.',
         type: CreateBlogDto,
     })
+    @ApiBasicAuth()
+    @UseGuards(AdminGuard)
     async remove(@Query('id') id: number): Promise<CreateBlogDto> {
         return await this.blogService.removePost(id);
     };

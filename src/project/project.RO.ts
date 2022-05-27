@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Status } from '@prisma/client';
 import { ClientRO } from 'src/client/client.RO';
 import { LogRO } from 'src/log/log.RO';
 import { ProjectStatus } from './dto/create-project.dto';
@@ -15,17 +16,18 @@ export class ProjectRO {
     @ApiProperty({
         description: 'ID of the client',
         default: "1",
-        type: ClientRO,
+        type: String,
     })
-    client: ClientRO;
+    clientId: string;
 
     @ApiProperty({
         description: 'Current status of the project',
-        default: ProjectStatus.REGISTERED,
-        enum: ProjectStatus,
+        default: Status.REGISTERED,
+        enum: Status,
         enumName: "Project status",
+        required: false
     })
-    status: ProjectStatus;
+    status?: Status;
 
     @ApiProperty({
         description: 'Start date',

@@ -1,5 +1,6 @@
-import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
-import { ApiBody, ApiCreatedResponse, ApiNotImplementedResponse, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
+import { ApiBasicAuth, ApiBody, ApiCreatedResponse, ApiNotImplementedResponse, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { AdminGuard } from 'src/auth/admin.guard';
 import { CreateLogDto } from './dto/create-log.dto';
 import { LogRO } from './log.RO';
 import { LogService } from './log.service';
@@ -19,6 +20,8 @@ export class LogController {
         description: 'Showed logs by this id',
         type: LogRO,
     })
+    @ApiBasicAuth()
+    @UseGuards(AdminGuard)
     async showComments(@Param('id') id: number): Promise<LogRO> {
         return await this.logService.showComments(id);
     };
@@ -30,8 +33,10 @@ export class LogController {
         description: 'Log has been successfully created.',
         type: CreateLogDto,
     })
+    @ApiBasicAuth()
+    @UseGuards(AdminGuard)
     async postComment(@Body() createLogDto: CreateLogDto): Promise<CreateLogDto> {
-        return await this.logService.postComment(createLogDto);
+        return await this.logService.createComments(createLogDto);
     };
 
     @Delete('delete')
@@ -44,6 +49,8 @@ export class LogController {
         description: 'Log has been successfully removed.',
         type: LogRO,
     })
+    @ApiBasicAuth()
+    @UseGuards(AdminGuard)
     async removeComment(@Query('id') id: number): Promise<LogRO> {
         return await this.logService.deleteComments(id);
     };

@@ -242,7 +242,27 @@ input[type="submit"]:hover{
     color: #1f1f1f !important;
 }
 
-.colm-form .form-container {
+.auth-form-container .sign-out-form-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-form .sign-out-form{
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  color: #1d2129;
+  max-width: fit-content;
+  padding: 20px;
+  margin: 10px;
+}
+
+#signout{
+  margin-top: 20px;
+}
+
+/* .colm-form .form-container {
   background-color: #ffffff;
   border: none;
   border-radius: 10px;
@@ -325,4 +345,4 @@ input[type="submit"]:hover{
 
 .colm-form p a:hover {
   text-decoration: underline;
-}
+} */
