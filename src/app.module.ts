@@ -11,7 +11,6 @@ import { BlogModule } from './blog/blog.module';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { EventsModule } from './events/events.module';
-import { EventsGateway } from './events.gateway';
 import { AppGateway } from './app.gateway';
 import config from 'dotenv';
 
@@ -31,7 +30,6 @@ import config from 'dotenv';
       },
     }),
     AdminModule,
-    EventsModule,
   ],
   controllers: [AppController],
   providers: [
@@ -40,7 +38,6 @@ import config from 'dotenv';
       provide: APP_INTERCEPTOR,
       useClass: LoggingInterceptor,
     },
-    EventsGateway,
     AppGateway,
   ],
 })

@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Query, Render, UseFilters, UseGuards } from '@nestjs/common';
-import { ApiBasicAuth, ApiBody, ApiCookieAuth, ApiCreatedResponse, ApiNotImplementedResponse, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ApiBasicAuth, ApiBody, ApiCreatedResponse, ApiNotImplementedResponse, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { AdminGuard } from 'src/auth/admin.guard';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Session } from 'src/auth/session.decorator';
