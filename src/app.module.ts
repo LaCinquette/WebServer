@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { LoggingInterceptor } from './logging.interceptor';
 import { ClientModule } from './client/client.module';
 import { ProjectModule } from './project/project.module';
@@ -13,6 +13,8 @@ import { AdminModule } from './admin/admin.module';
 import { EventsModule } from './events/events.module';
 import { AppGateway } from './app.gateway';
 import config from 'dotenv';
+import { JoiValidationPipe } from './joi-validation.pipe';
+import { CleanerMiddleware } from './cleaner.middleware';
 
 @Module({
   imports: [ClientModule, ProjectModule, LogModule, BlogModule, AuthModule,
@@ -38,7 +40,17 @@ import config from 'dotenv';
       provide: APP_INTERCEPTOR,
       useClass: LoggingInterceptor,
     },
+    // {
+    //   provide: APP_PIPE,
+    //   useClass: ClassValidatorPipe,
+    // },
     AppGateway,
   ],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(CleanerMiddleware)
+      .forRoutes({ path: 'blog/post', method: RequestMethod.POST });
+  }
+}

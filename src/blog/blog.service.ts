@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable, NotImplementedException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
@@ -9,7 +10,7 @@ import { CreateBlogDto } from './dto/create-blog.dto';
 export class BlogService {
     constructor(private prisma: PrismaService) {}
     
-    async showPosts(postId: number): Promise<BlogRO> {
+    async showPostById(postId: number): Promise<BlogRO> {
         return await this.prisma.blog.findUnique({
             where: {
                 postId: postId
@@ -17,7 +18,17 @@ export class BlogService {
         });
     }
 
+    async showPosts(skip?: number, take?: number): Promise<BlogRO[]> {
+        let res = await this.prisma.blog.findMany({
+            skip,
+            take
+        });
+        console.log(res)
+        return res;
+    }
+
     async postToBlog(data: Prisma.BlogCreateInput): Promise<CreateBlogDto> {
+        console.log(data)
         return await this.prisma.blog.create({
             data
         });

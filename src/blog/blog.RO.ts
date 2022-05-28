@@ -21,11 +21,11 @@ export class BlogRO {
       type: Number,
     })
     likes: number;
-  
+
     @ApiProperty({
-      description: 'Reposts',
+      description: 'Date',
       default: 0,
-      type: Number,
+      type: Date,
     })
-    reposts: number;
+    date: Date;
   }

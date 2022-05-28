@@ -12,6 +12,7 @@ export class AdminGuard implements CanActivate {
         const req = ctx.getRequest();
         const resp = ctx.getResponse();
         // You can create an optional version of this by passing {sessionRequired: false} to verifySession
+
         await verifySession()(
             req,
             resp,
@@ -20,11 +21,10 @@ export class AdminGuard implements CanActivate {
             },
         );
 
-        if (req.session.getAccessTokenPayload()["role"] !== 'admin') {
-            throw new STError({
-                message: "RESPONSE_SENT",
-                type: "RESPONSE_SENT",
-            });
+        if (!err) {
+            if (req.session.getAccessTokenPayload()["role"] !== 'admin'){
+                resp.redirect('/client/auth');
+            }
         }
 
         if (resp.headersSent) {
@@ -33,6 +33,7 @@ export class AdminGuard implements CanActivate {
                 type: "RESPONSE_SENT",
             });
         }
+
 
         if (err) {
             throw err;

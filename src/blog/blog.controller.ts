@@ -1,6 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Post, Query, Render, UseGuards } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Query, Render, UseGuards, UsePipes } from '@nestjs/common';
 import { ApiBasicAuth, ApiBody, ApiCreatedResponse, ApiNotImplementedResponse, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { skip } from 'rxjs';
 import { AdminGuard } from 'src/auth/admin.guard';
+import { JoiValidationPipe } from 'src/joi-validation.pipe';
 import { BlogRO } from './blog.RO';
 import { BlogService } from './blog.service';
 import { CreateBlogDto } from './dto/create-blog.dto';
@@ -12,11 +14,20 @@ export class BlogController {
 
     @Get('')
     @Render('blog')
-    blog(): any{
-        return;
+    blog(): void {
+        //
     }
 
-    @Get('get/:id')
+    @Get('get')
+    @Render('blog')
+    async blogShow(@Query('skip') skip?: number, @Query('take') take?: number): Promise<BlogRO[]>{
+        // if (skip === NaN || take === NaN){
+        //     throw new BadRequestException();
+        // }
+        return await this.blogService.showPosts(skip ? skip : 0, take ? take : 5);
+    }
+
+    @Get('searchbyid/:id')
     @ApiParam({
         name: "id",
         type: Number
@@ -29,7 +40,7 @@ export class BlogController {
     @ApiBasicAuth()
     @UseGuards(AdminGuard)
     async findAll(@Param('id') id: number): Promise<BlogRO>{
-        return await this.blogService.showPosts(id);
+        return await this.blogService.showPostById(id);
     };
 
     @Post('post')
@@ -41,9 +52,15 @@ export class BlogController {
     })
     @ApiBasicAuth()
     @UseGuards(AdminGuard)
-    async create(@Body() createClientDto: CreateBlogDto): Promise<CreateBlogDto> {
-        return await this.blogService.postToBlog(createClientDto);
+    async create(@Body() createBlogDto: CreateBlogDto): Promise<CreateBlogDto> {
+        console.log(createBlogDto)
+        return await this.blogService.postToBlog(createBlogDto);
     };
+
+    // @Post('post-test')
+    // postTest(@Body() createClientDto: CreateBlogDto){
+    //     console.log(createClientDto)
+    // }
 
     @Delete('delete')
     @ApiQuery({

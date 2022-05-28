@@ -4,9 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <title>Admin panel</title>
 </head>
 <body>
-    <h1>This is admin panel</h1>
+    <div class="blog-post">
+        <form action="/blog/post" method="post" id="blog-post-form">
+            <input type="text" name="title" placeholder="Title" id="blog-post-title" required>
+            <input type="number" name="likes" placeholder="0" id="blog-post-likes">
+            <textarea type="text" name="text" placeholder="Blog post text" id="blog-post-text" required></textarea>
+            <input type="submit" value="Publish" id="blog-post-submit">
+            {{!-- <button type="submit" id="blog-post-submit">Submit</button> --}}
+        </form>
+    </div>
 </body>
+<script src="admin.js"></script>
 </html>

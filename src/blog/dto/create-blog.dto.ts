@@ -1,6 +1,6 @@
 
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumberString } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumberString, IsOptional, ValidateIf } from 'class-validator';
 
 // model Blog {
 //   postId  Int      @id @default(autoincrement())
@@ -28,6 +28,9 @@ export class CreateBlogDto {
   })
   text: string;
 
+  @IsOptional()
+  @ValidateIf(e => e === '')
+  @IsDate()
   @ApiProperty({
     description: 'Blog post date',
     default: "01.01.2022",
@@ -36,21 +39,13 @@ export class CreateBlogDto {
   })
   date?: Date;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @ValidateIf(e => e === '')
   @IsNumberString()
   @ApiProperty({
     description: 'Likes',
     default: 0,
     type: Number,
   })
-  likes: number;
-
-  @IsNotEmpty()
-  @IsNumberString()
-  @ApiProperty({
-    description: 'Reposts',
-    default: 0,
-    type: Number,
-  })
-  reposts: number;
+  likes?: number;
 }

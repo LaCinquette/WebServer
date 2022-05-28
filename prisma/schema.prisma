@@ -54,5 +54,4 @@ model Blog {
   text    String
   date    DateTime @default(now())
   likes   Int      @default(0)
-  reposts Int      @default(0)
 }
