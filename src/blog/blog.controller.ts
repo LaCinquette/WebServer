@@ -19,7 +19,6 @@ export class BlogController {
     }
 
     @Get('get')
-    @Render('blog')
     async blogShow(@Query('skip') skip?: number, @Query('take') take?: number): Promise<BlogRO[]>{
         // if (skip === NaN || take === NaN){
         //     throw new BadRequestException();
